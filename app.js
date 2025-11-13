@@ -14,35 +14,49 @@ const heartthrobs = [
   { name: "Sam Claflin", score: 0 },
 ];
 
-let totalPairs = 0;
-const maxPairs = heartthrobs.length * 5;
-let battleCtr = 1;
 
+let battleCtr = 1;
 const battleNo = document.getElementById("battle-ctr");
 const left = document.getElementById("left");
 const right = document.getElementById("right");
 const bothBtn = document.getElementById("both");
 const noOpinionBtn = document.getElementById("no-opinion");
 
-function randomizePair(){
-    let pair1 = Math.floor(Math.random() * heartthrobs.length);
-    let pair2;
+let allPairs = [];
+for (let i = 0; i < heartthrobs.length; i++) 
+{
+    for (let j = i + 1; j < heartthrobs.length; j++) 
+    {
+        allPairs.push([heartthrobs[i], heartthrobs[j]]);
+    }
+}
 
-    do{
-        pair2 = Math.floor(Math.random() * heartthrobs.length);
-    } while (pair1 === pair2);
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) 
+    {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
-    return [heartthrobs[pair1], heartthrobs[pair2]];
+shuffle(allPairs);
+
+let currentIndex = 0;
+const maxPairs = allPairs.length;
+
+function updatePercentage() {
+    const percent = Math.floor((currentIndex / maxPairs) * 100);
+    document.getElementById("percentage").textContent = `${percent}% Sorted`;
 }
 
 function showHeartthrobs(){
-    if(totalPairs >= maxPairs)
+    if(currentIndex >= maxPairs)
     {
         showResult();
         return;
     }
 
-    const[leftName, rightName] = randomizePair();
+    const[leftName, rightName] = allPairs[currentIndex];
     left.textContent = leftName.name;
     right.textContent = rightName.name;
 
@@ -56,7 +70,7 @@ function showHeartthrobs(){
 
 function choose(heartthrob){
     heartthrob.score += 1;
-    totalPairs += 1;
+    currentIndex += 1;
     battleCtr += 1;
     
     updatePercentage();
@@ -66,22 +80,17 @@ function choose(heartthrob){
 function chooseBoth(leftName, rightName){
     leftName.score += 1;
     rightName.score += 1;
-    totalPairs += 1;
+    currentIndex += 1;
     battleCtr += 1;
     updatePercentage();
     showHeartthrobs();
 }
 
 function skip() {
-    totalPairs += 1;
+    currentIndex += 1;
     battleCtr += 1;
     updatePercentage();
     showHeartthrobs();
-}
-
-function updatePercentage() {
-  const percent = Math.floor((totalPairs / maxPairs) * 100);
-  document.getElementById("percentage").textContent = `${percent}% Sorted`;
 }
 
 function showResult(){
