@@ -1,0 +1,61 @@
+/* What do you have to be scared of?
+ *
+ * Lorin Tackett, July 2013
+ * http://lorintackett.com 
+ */
+
+/*
+// Animation & keyframes
+// Refactor by @HugoGiraudel
+// https://codepen.io/HugoGiraudel
+*/
+
+/* Keyframes */
+@keyframes clouds-loop-1 {
+  to { background-position: -1000px 0; }
+}
+@keyframes clouds-loop-2 {
+  to { background-position: -1000px 0; }
+}
+@keyframes clouds-loop-3 {
+  to { background-position: -1579px 0; }
+}
+
+/* Clouds container */
+.clouds {
+  opacity: 0.4;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Cloud layers */
+.clouds-1,
+.clouds-2,
+.clouds-3 {
+  background-repeat: repeat-x;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 500px;
+}
+
+.clouds-1 {
+  background-image: url("https://s.cdpn.io/15514/clouds_2.png");
+  animation: clouds-loop-1 20s linear infinite;
+  top: 0;
+}
+
+.clouds-2 {
+  background-image: url("https://s.cdpn.io/15514/clouds_1.png");
+  animation: clouds-loop-2 15s linear infinite;
+  top: 0px;
+}
+
+.clouds-3 {
+  background-image: url("https://s.cdpn.io/15514/clouds_3.png");
+  animation: clouds-loop-3 17s linear infinite;
+  top: 0px;
+}
