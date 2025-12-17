@@ -3,6 +3,7 @@ body{
     background-color: rgb(48, 85, 91);
     margin: 0;
     position: relative;
+    min-height: 100vh;
 }
 
 @font-face {
@@ -16,7 +17,8 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 120px;  
+    padding-top: 120px;
+    padding-bottom: 40px;
     position: relative;
     z-index: 1;
 }
@@ -25,16 +27,21 @@ h1{
     font-family: 'WickedFont', sans-serif;
     font-size: 60px;
     margin-top: 0;
+    margin-bottom: 20px;
     color: rgb(242, 242, 242);
 }
 
 p{
     color: #ffffff;
+    margin: 10px 0;
 }
 
 .sort-buttons{
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 90vw;
 }
 
 .sort-middle{
@@ -51,6 +58,7 @@ button{
     border-style: solid;
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
+    min-width: 120px;
 }
 
 #left, #right{
@@ -67,23 +75,25 @@ button{
 
 #both, #no-opinion{
     background-image: linear-gradient(to right, lightpink, rgb(122, 190, 138));
+    color: #ffffff;
+    border: none;
 }
 
 button:hover{
     filter: brightness(0.7);
 }
 
-
 #creator{
     display: flex;
     color: rgb(91, 115, 141);
     margin-top: 20px;
+    font-size: 14px;
 }
-
 
 table {
     max-width: 1000px;
     margin: 20px 30px;
+    width: 90vw;
 }
 
 table th, table td {
@@ -98,7 +108,5 @@ table th {
 
 table tr:nth-child(even) {
     background-color: #ffffff;
-    color:rgb(149, 100, 108);
+    color: rgb(149, 100, 108);
 }
-
-
